@@ -104,6 +104,8 @@ export default defineConfig((ctx) => {
     framework: {
       config: {},
 
+      cssAddon: true, // adds responsive CSS classes. See: https://quasar.dev/layout/grid/introduction-to-flexbox#flex-addons
+
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 

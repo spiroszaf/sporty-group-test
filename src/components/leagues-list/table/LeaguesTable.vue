@@ -1,6 +1,10 @@
 <template>
-  <q-table flat :bordered="isSmallScreen" :grid="isSmallScreen" :rows="leaguesStore.leaguesList" :columns="columns"
-    :pagination="initialPagination" row-key="league" @row-click="(event, row) => $emit('row-click', row)">
+  <q-table flat :bordered="isSmallScreen" :grid="isSmallScreen" :rows="leaguesStore.filteredLeaguesList"
+    :columns="columns" no-data-label="No leagues found" :pagination="initialPagination" row-key="league"
+    @row-click="(event, row) => $emit('row-click', row)">
+    <template v-slot:top>
+
+    </template>
     <template v-slot:body-cell-league="props">
       <q-td key="league" :props="props">
         <LeagueNameCell :row="props.row" />
