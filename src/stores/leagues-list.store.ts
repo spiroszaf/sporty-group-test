@@ -29,13 +29,14 @@ export const useLeaguesListStore = defineStore('leagues-list', () => {
     { deep: true }
   );
 
-  const { data: leaguesData } = useQuery({
+  const { data: leaguesData, isError: isQueryError, error: queryError, isFetching: isLeaquesFetching, refetch: refetchLeagues } = useQuery({
     queryKey: ['leagues', 'all'],
     queryFn: getAllLeagues,
     staleTime: _5_MINUTES
   })
 
   const leaguesList = computed(() => (leaguesData.value?.data.leagues ?? []));
+  const getLeaguesError = computed(() => (isQueryError.value ? queryError.value : null));
 
   const filteredLeaguesList = computed(() => leaguesList.value
     .filter((x) => filters.search ? x.strLeague.toLowerCase().includes(filters.search.toLowerCase()) : true)
@@ -63,7 +64,10 @@ export const useLeaguesListStore = defineStore('leagues-list', () => {
     filteredLeaguesList,
     filters,
     sportTypes,
-    loadFiltersFromRoute
+    loadFiltersFromRoute,
+    getLeaguesError,
+    isLeaquesFetching,
+    refetchLeagues
   }
 });
 

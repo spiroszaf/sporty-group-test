@@ -6,12 +6,16 @@ const _5_MINUTES = 1000 * 60 * 5;
 
 export function useSeasonBadges(leagueId: string) {
 
-  const { data: seasons } = useQuery({
+  const { data: seasons, isError, isLoading } = useQuery({
     queryKey: ['league-season-badges', leagueId],
     queryFn: () => getLeagueSeasonBadges(leagueId),
     staleTime: _5_MINUTES,
   })
 
-  return computed(() => seasons.value?.data.seasons || []);
+  return computed(() => ({
+    seasons: seasons.value?.data.seasons || [],
+    isError: isError.value,
+    isLoading: isLoading.value,
+  }));
 
 }

@@ -1,7 +1,7 @@
 <template>
   <q-table flat :bordered="isSmallScreen" :grid="isSmallScreen" :rows="leaguesStore.filteredLeaguesList"
-    :columns="columns" no-data-label="No leagues found" :pagination="initialPagination" row-key="league"
-    @row-click="(event, row) => $emit('row-click', row)">
+    :loading="leaguesStore.isLeaquesFetching" :columns="columns" no-data-label="No leagues found"
+    :pagination="initialPagination" row-key="league" @row-click="(event, row) => $emit('row-click', row)">
     <template v-slot:top>
 
     </template>

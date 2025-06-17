@@ -4,6 +4,12 @@
     <p>
       Find leagues you are interested in. Click on a league to view its details.
     </p>
+    <q-banner v-if="leaguesListStore.getLeaguesError" inline-actions class="text-white bg-red q-my-sm" rounded>
+      Cannot load leagues list. Please try again later.
+      <template v-slot:action>
+        <q-btn flat color="white" label="Retry" @click="leaguesListStore.refetchLeagues()" />
+      </template>
+    </q-banner>
     <TableFilters />
     <LeaguesTable @row-click="onRowClick($event)" />
     <BadgeDialog v-if="showBadgeDialog" v-model="showBadgeDialog" :league="currentLeague!" />
